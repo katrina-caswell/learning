@@ -1,19 +1,62 @@
-#### How to show a column from a table
+##### How to show a column from a table
 ```
 SELECT field FROM table;
 ```
 
-#### Showing multiple columns
+##### Showing multiple columns
 ```
 SELECT field1, field2 FROM table;
 ```
 
-#### Show all columns from a table
+##### Show all columns from a table
 ```
 SELECT * FROM table;
 ```
 
-#### Limit rows returned when showing a table, to make it run faster (e.g. to 10)
+##### Limit rows returned when showing a table, to make it run faster (e.g. to 10)
 ```
 SELECT * FROM table LIMIT 10;
 ```
+
+##### If rows contain duplicate values, use distinct to see only one of each value
+```
+SELECT DISTINCT country FROM table;
+```
+
+##### Find name and year for films released in the 90s that are French or Spanish and grossed more than 2M
+```
+SELECT title, release_year
+FROM films
+WHERE (release_year >= 1990 AND release_year < 2000)
+AND (language = 'French' OR language = 'Spanish')
+AND gross >2000000;
+```
+
+##### Find name and year of French or Spanish films that released between 1990 and 2000 inclusive and budgeted over 1M
+```
+SELECT title, release_year
+FROM films
+WHERE release_year BETWEEN 1990 AND 2000
+AND budget > 100000000
+AND (language = 'Spanish' OR language = 'French');
+```
+
+##### Count rows
+```
+SELECT event_type, COUNT(1) AS no_of_rows FROM database WHERE current='Y'
+GROUP BY event_type
+ORDER BY count(1) desc;
+```
+
+##### Inner joins
+```
+SELECT *
+FROM appointment a
+INNER JOIN store s
+ON a.database_storenum = s.storenumber
+AND s.current='Y'
+WHERE a.customerID = 123
+AND s.storenumber = 1
+ORDER BY bookingdate
+```
+

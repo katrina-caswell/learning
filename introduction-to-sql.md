@@ -43,9 +43,41 @@ AND (language = 'Spanish' OR language = 'French');
 
 ##### Count rows
 ```
+SELECT COUNT(*)
+FROM films
+WHERE language IS NULL;
+```
+
+```
 SELECT event_type, COUNT(1) AS no_of_rows FROM database WHERE current='Y'
 GROUP BY event_type
 ORDER BY count(1) desc;
+```
+
+##### Use IN to save on having multiple OR statements
+```
+SELECT title, certification
+FROM films
+WHERE certification IN ('PG','R');
+```
+
+##### Like and not like - names beginning with B, names with R as the second letter, names that don't start with A
+```
+SELECT name
+FROM people
+WHERE name LIKE 'B%';
+```
+
+```
+SELECT name
+FROM people
+WHERE name LIKE '_r%';
+```
+
+```
+SELECT name
+FROM people
+WHERE name NOT LIKE 'A%';
 ```
 
 ##### Inner joins

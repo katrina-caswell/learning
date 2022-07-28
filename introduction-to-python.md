@@ -48,3 +48,39 @@ savings = 100
 result = 100 * 1.10 ** 7
 print("I started with $" + str(savings) + " and now have $" + str(result) + ". Awesome!")
 ```
+
+Slicing Lists
+
+```
+# Remember how 0 indexing works, and that slicing this way [a:b] is inclusive of a and exclusive of b
+areas = ["hallway", 11.25, "kitchen", 18.0, "living room", 20.0, "bedroom", 10.75, "bathroom", 9.50]
+downstairs = areas[0:6]
+upstairs = areas[6:10]
+bwords = areas[-4:]
+print(downstairs)
+print(upstairs)
+  ['hallway', 11.25, 'kitchen', 18.0, 'living room', 20.0]
+  ['bedroom', 10.75, 'bathroom', 9.5]
+  ['bedroom', 10.75, 'bathroom', 9.5]
+```
+
+Deleting list items
+
+```
+areas = ["hallway", 11.25, "kitchen", 18.0,
+        "chill zone", 20.0, "bedroom", 10.75,
+         "bathroom", 10.50, "poolhouse", 24.5,
+         "garage", 15.45]
+del(areas[-4,-2])
+# This code will remove poolhouse and 24.5 from the above list
+```
+
+Explicit list copying
+
+```
+areas = [11.25, 18.0, 20.0, 10.75, 9.50]
+areas_copy = list(areas)
+# If the above copy said areas_copy = areas, then any changes made to areas_copy would also change areas
+areas_copy[0] = 5.0
+print(areas)
+```

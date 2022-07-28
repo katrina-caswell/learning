@@ -7,7 +7,8 @@ On 21/07/2022 I created this learning repository to:
 * keep record of basic Python syntax
 * prepare to do an analytics project using SQL and Python
 
-Progress update 28/07/2022
+**Progress update 28/07/2022**
+
 I'm working through introductory SQL and Python courses on Datacamp, and have covered:
 * Selecting columns with SQL
 * Filtering rows with SQL

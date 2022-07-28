@@ -1,48 +1,17 @@
 
 # Hello world
 
-I am getting to grips with how Github works, and created this learning repository and readme markdown file to help me learn.  
-I first updated this document via pull request to understand how branches worked.
+On 21/07/2022 I created this learning repository to:
+* become more familiar with Github
+* keep record of basic SQL syntax
+* keep record of basic Python syntax
+* prepare to do an analytics project using SQL and Python
 
-README files are markdown guides that developers write to describe their project. They are often hosted as a website. They should include things like:
-* Project name - primary goal & aim
-* Description of project
-* How to use your project - instructions, examples
-* Team credits
+Progress update 28/07/2022
+I'm working through introductory SQL and Python courses on Datacamp, and have covered:
+* Selecting columns with SQL
+* Filtering rows with SQL
+* Python basics
+* Python lists
 
-.md files are created using markdown language software, which is a lightweight markup language used to format text on the web with plain text formatting syntax.
-
-# There
-
-## Are
-
-### Six
-
-#### Levels
-
-##### Of
-
-###### Heading
-
-**bold text**  
-*italic text*  
-***special bold italics***  
-
-> Block quotes
-> 
-> Can have multiple paragraphs
-> 
->> Or be nested  
-
-1. Items
-2. Can
-3. Be
-4. Listed  
-
-```
-<html>
-  <head>
-    <title>Test</title>
-  </head>
- ```
-  
+Next week I want to have covered aggregate functions, sorting, and grouping with SQL, and introduction to functions, packages, and Numpy in Python. 

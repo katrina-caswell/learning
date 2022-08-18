@@ -84,3 +84,49 @@ areas_copy = list(areas)
 areas_copy[0] = 5.0
 print(areas)
 ```
+
+Builtin functions:
+* print
+* str, int, bool, float
+* type
+* max
+* round
+* help
+* len (length)
+* pow (x to power of y)
+* sorted (defaults ascending)
+* index
+* append
+* remove
+* reverse
+
+
+```
+list = [4, 56, 67, 9]
+list_sorted = (sorted((list),reverse=True))
+```
+
+Example of count method
+```
+# string to experiment with: place
+place = "poolhouse"
+# Use upper() on place: place_up
+place_up = str.upper(place)
+# Print out place and place_up
+print(place, place_up)
+# Print out the number of o's in place
+print(place.count('o'))
+```
+
+Testing math package to use pi
+```
+# Import the math package
+import math as m
+# Calculate C
+C = (2*m.pi*r)
+# Calculate A
+A = (m.pi*(pow(r,2)))
+# Build printout
+print("Circumference: " + str(C))
+print("Area: " + str(A))
+```

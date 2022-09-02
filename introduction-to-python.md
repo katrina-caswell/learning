@@ -152,3 +152,13 @@ print(light)
 # Print out BMIs of all baseball players whose BMI is below 21
 print(bmi[light])
 ```
+
+Generating data
+
+```
+#To generate data you can use np.random.normal(), its arguments are distribution mean, distribution standard deviation, and number of samples
+height = np.round(np.random.normal(1.75, 0.20, 5000), 2)
+weight = np.round(np.random.normal(60.32, 15, 5000), 2)
+np_city = np.column_stack((height, weight))
+```
+

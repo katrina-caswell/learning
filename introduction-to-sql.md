@@ -13,7 +13,7 @@ SELECT field1, field2 FROM table;
 SELECT * FROM table;
 ```
 
-##### Limit rows returned when showing a table, to make it run faster (e.g. to 10)
+##### Limit rows returned when showing a table, to make it run faster (e.g. to 10) - LIMIT is used in PostgresSQL, it is known as TOP in SQL Server
 ```
 SELECT * FROM table LIMIT 10;
 ```
@@ -39,6 +39,14 @@ FROM films
 WHERE release_year BETWEEN 1990 AND 2000
 AND budget > 100000000
 AND (language = 'Spanish' OR language = 'French');
+```
+
+Exclusion
+```
+SELECT *
+FROM films
+WHERE release_year <> 2015
+ORDER BY release_year;
 ```
 
 ##### Count rows
@@ -92,16 +100,41 @@ AND s.storenumber = 1
 ORDER BY bookingdate
 ```
 
-Good table design would include singular field names - table = customer, fields = id, first_name, phone_num (not table = Customer, fields = IDS, FIRST NAMES, PHONE NUMS)
-
-Aliasing - if there is a stupid field name, you can change it to something more readable so:
+Aliasing - if there is a non-user-friendly field name, you can change it to something more readable
 ```
 SELECT name AS first_name
 FROM employees
 ```
+
 Views - virtual tables
 ```
 CREATE VIEW employee_hire_years AS
 SELECT id, name, year_hired
 FROM employees;
+```
+
+Sums, averages, percentages
+```
+SELECT SUM(duration)
+FROM films;
+
+SELECT AVG(duration)
+FROM films;
+
+SELECT MIN(duration)
+FROM films;
+
+SELECT MAX(duration)
+FROM films;
+
+SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
+FROM people;
+```
+
+Grouping and Ordering
+```
+SELECT release_year, country, MAX(budget)
+FROM films
+GROUP BY release_year, country
+ORDER BY release_year, country
 ```

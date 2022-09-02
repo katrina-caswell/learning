@@ -92,3 +92,16 @@ AND s.storenumber = 1
 ORDER BY bookingdate
 ```
 
+Good table design would include singular field names - table = customer, fields = id, first_name, phone_num (not table = Customer, fields = IDS, FIRST NAMES, PHONE NUMS)
+
+Aliasing - if there is a stupid field name, you can change it to something more readable so:
+```
+SELECT name AS first_name
+FROM employees
+```
+Views - virtual tables
+```
+CREATE VIEW employee_hire_years AS
+SELECT id, name, year_hired
+FROM employees;
+```

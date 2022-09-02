@@ -100,6 +100,15 @@ AND s.storenumber = 1
 ORDER BY bookingdate
 ```
 
+Joining tables
+```
+SELECT title, imdb_score
+FROM films
+JOIN reviews
+ON films.id = reviews.film_id
+WHERE title = 'To Kill a Mockingbird';
+```
+
 Aliasing - if there is a non-user-friendly field name, you can change it to something more readable
 ```
 SELECT name AS first_name
@@ -137,4 +146,21 @@ SELECT release_year, country, MAX(budget)
 FROM films
 GROUP BY release_year, country
 ORDER BY release_year, country
+```
+
+WHERE can't be used with aggregate functions:
+```
+-- select country, average budget, 
+--     and average gross
+SELECT country, AVG(budget) AS avg_budget, AVG(gross) AS avg_gross
+-- from the films table
+FROM films
+-- group by country 
+GROUP BY country
+-- where the country has more than 10 titles
+HAVING COUNT(country) > 10
+-- order by country
+ORDER BY country
+-- limit to only show 5 results
+LIMIT 5;
 ```

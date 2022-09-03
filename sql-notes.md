@@ -32,6 +32,15 @@ AND (language = 'French' OR language = 'Spanish')
 AND gross >2000000;
 ```
 
+IN
+```
+SELECT name, nationality
+FROM artists
+WHERE nationality IN ('British', 'South African', 'Mexican')
+ORDER BY name
+LIMIT 10;
+```
+
 ##### Find name and year of French or Spanish films that released between 1990 and 2000 inclusive and budgeted over 1M
 ```
 SELECT title, release_year
@@ -62,6 +71,14 @@ GROUP BY event_type
 ORDER BY count(1) desc;
 ```
 
+Not null
+```
+SELECT id, style
+FROM wine
+WHERE price IS NOT NULL
+ORDER BY id;
+```
+
 ##### Use IN to save on having multiple OR statements
 ```
 SELECT title, certification
@@ -88,7 +105,7 @@ FROM people
 WHERE name NOT LIKE 'A%';
 ```
 
-##### Inner joins
+##### Inner joins on tables
 ```
 SELECT *
 FROM appointment a
@@ -113,6 +130,15 @@ Aliasing - if there is a non-user-friendly field name, you can change it to some
 ```
 SELECT name AS first_name
 FROM employees
+```
+
+Lower case
+```
+SELECT user_id,
+lower(title) AS title_lower
+FROM favourite
+ORDER BY user_id, title_lower
+LIMIT 5;
 ```
 
 Views - virtual tables

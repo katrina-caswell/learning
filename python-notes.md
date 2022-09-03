@@ -162,3 +162,48 @@ weight = np.round(np.random.normal(60.32, 15, 5000), 2)
 np_city = np.column_stack((height, weight))
 ```
 
+Text files
+```
+file = open('moby_dick.txt', mode='r')
+print(file.read())
+file.close()
+print(file.closed)
+
+with open('moby_dick.txt') as file:
+    print(file.readline())
+    print(file.readline())
+    print(file.readline())
+```
+
+Plotting data
+```
+import numpy as np
+file = 'digits.csv'
+digits = np.loadtxt(file, delimiter=',')
+print(type(digits))
+# Select and reshape a row
+im = digits[21, 1:]
+im_sq = np.reshape(im, (28, 28))
+# Plot reshaped data (matplotlib.pyplot already loaded as plt)
+plt.imshow(im_sq, cmap='Greys', interpolation='nearest')
+plt.show()
+
+file = 'seaslug.txt'
+data = np.loadtxt(file, delimiter='\t', dtype=str)
+print(data[0])
+data_float = np.loadtxt(file, delimiter='\t', dtype=float, skiprows=1)
+print(data_float[9])
+# Scatter plot
+plt.scatter(data_float[:, 0], data_float[:, 1])
+plt.xlabel('time (min.)')
+plt.ylabel('percentage of larvae')
+plt.show()
+```
+
+Pandas dataframes w' head
+```
+import pandas as pd
+file = 'titanic.csv'
+df = pd.read_csv(file)
+print(df.head())
+```

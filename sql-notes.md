@@ -140,6 +140,11 @@ SELECT COUNT(deathdate) * 100.0 / COUNT(*) AS percentage_dead
 FROM people;
 ```
 
+Concat
+```
+SELECT concat('TV', 'show') AS new_word;
+```
+
 Grouping and Ordering
 ```
 SELECT release_year, country, MAX(budget)

@@ -434,3 +434,29 @@ df = pd.read_sql_query("SELECT * FROM PlaylistTrack INNER JOIN Track on Playlist
 # Print head of DataFrame
 print(df.head())
 ```
+
+Checking tables with pandas
+```
+# What are the headers and data in the table
+print(table.head())
+# Show me 4 rows of data with headers
+print(table.head(4))
+# How many rows and columns are there
+print(table.shape)
+# Just show me the headers with no data
+print(table.columns)
+```
+
+Joining tables with pandas
+ ```
+ # This will only return rows where values match in both tables
+ wards_census = wards.merge(census, on='ward', suffixes=('_ward','_cen'))
+ print(wards_census.head())
+ ```
+ ```
+ # Merge the taxi_owners and taxi_veh tables setting a suffix
+taxi_own_veh = taxi_owners.merge(taxi_veh, on='vid', suffixes=('_own','_veh'))
+
+# Print the value_counts to find the most popular fuel_type
+print(taxi_own_veh['fuel_type'].value_counts())
+```

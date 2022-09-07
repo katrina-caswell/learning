@@ -460,3 +460,34 @@ taxi_own_veh = taxi_owners.merge(taxi_veh, on='vid', suffixes=('_own','_veh'))
 # Print the value_counts to find the most popular fuel_type
 print(taxi_own_veh['fuel_type'].value_counts())
 ```
+```
+# Merge the licenses and biz_owners table on account
+licenses_owners = licenses.merge(biz_owners, on='account')
+
+# Group the results by title then count the number of accounts
+counted_df = licenses_owners.groupby('title').agg({'account':'count'})
+
+# Sort the counted_df in desending order
+sorted_df = counted_df.sort_values(by='account', ascending=False)
+
+# Use .head() method to print the first few rows of sorted_df
+print(sorted_df.head())
+```
+
+Joining multiple tables (pandas)
+```
+# Merge the ridership, cal, and stations tables
+ridership_cal_stations = ridership.merge(cal, on=['year','month','day']) \
+# A backslash makes python read these two as one line of code
+							.merge(stations, on='station_id')
+
+# Create a filter to filter ridership_cal_stations
+filter_criteria = ((ridership_cal_stations['month'] == 7) 
+                   & (ridership_cal_stations['day_type'] == 'Weekday') 
+                   & (ridership_cal_stations['station_name'] == 'Wilson'))
+
+# Use .loc and the filter to select for rides
+print(ridership_cal_stations.loc[filter_criteria, 'rides'].sum())
+```
+
+

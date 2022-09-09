@@ -490,4 +490,22 @@ filter_criteria = ((ridership_cal_stations['month'] == 7)
 print(ridership_cal_stations.loc[filter_criteria, 'rides'].sum())
 ```
 
+Left, right, outer joins
+```
+movies_financials = movies.merge(financials, on='id', how='left')
+#Count missing rows in budget column
+number_of_missing_fin = movies_financials['budget'].isnull().sum()
+```
+
+```
+action_scifi = action_movies.merge(scifi_movies, on='movie_id', how='right',
+                                   suffixes=('_act','_sci'))
+scifi_only = action_scifi[action_scifi['genre_act'].isnull()]
+movies_and_scifi_only = movies.merge(scifi_only, left_on='id', right_on='movie_id')
+```
+
+```
+
+```
+
 

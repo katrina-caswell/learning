@@ -543,10 +543,87 @@ orig_seq['diff'] = orig_seq['revenue_seq'] - orig_seq['revenue_org']
 titles_diff = orig_seq[['title_org','title_seq','diff']]
 ```
 
-Filtering joins (isin)
+Filtering + anti joins (isin, indicator=, .loc)
+
+```
+# Anti join
+empl_cust = employees.merge(top_cust, on='srid', 
+                            how='left', indicator=True)
+srid_list = empl_cust.loc[empl_cust['_merge'] == 'left_only', 'srid']
+print(employees[employees['srid'].isin(srid_list)])
 ```
 
 ```
+# Merge the non_mus_tck and top_invoices tables on tid
+tracks_invoices = non_mus_tcks.merge(top_invoices, on='tid')
 
+# Use .isin() to subset non_mus_tcsk to rows with tid in tracks_invoices
+top_tracks = non_mus_tcks[non_mus_tcks['tid'].isin(tracks_invoices['tid'])]
 
+# Group the top_tracks by gid and count the tid rows
+cnt_by_gid = top_tracks.groupby(['gid'], as_index=False).agg({'tid':'count'})
 
+# Merge the genres table to cnt_by_gid on gid and print
+print(cnt_by_gid.merge(genres, on='gid'))
+```
+
+Vertical concatenation
+```
+# Concatenate the tracks
+tracks_from_albums = pd.concat([tracks_master,tracks_ride,tracks_st],
+                               sort=True)
+print(tracks_from_albums)
+
+# Concat tracks so index goes from 0 to n-1
+tracks_from_albums = pd.concat([tracks_master,tracks_ride,tracks_st],
+                               ignore_index=True,
+                               sort=True)
+print(tracks_from_albums)
+
+# Concat showing column names in all tables
+tracks_from_albums = pd.concat([tracks_master, tracks_ride, tracks_st],
+                               join=('inner'),
+                               sort=True)
+print(tracks_from_albums)
+```
+
+```
+# Concat with keys
+inv_jul_thr_sep = pd.concat([inv_jul, inv_aug, inv_sep], 
+                            keys=['7Jul','8Aug','9Sep'])
+avg_inv_by_month = inv_jul_thr_sep.groupby(level=0).agg({'total':'mean'})
+avg_inv_by_month.plot(kind='bar')
+plt.show()
+```
+
+```
+# Use the .append() method to combine the tracks tables
+metallica_tracks = tracks_ride.append([tracks_master,tracks_st], sort=False)
+
+# Merge metallica_tracks and invoice_items
+tracks_invoices = metallica_tracks.merge(invoice_items, on='tid', how='inner')
+
+# For each tid and name sum the quantity sold
+tracks_sold = tracks_invoices.groupby(['tid','name']).agg({'quantity':'sum'})
+
+# Sort in decending order by quantity and print the results
+print(tracks_sold.sort_values(['quantity'],ascending=False))
+```
+
+Validate= and Verify_integrity=
+```
+# Concatenate the classic tables vertically
+classic_18_19 = pd.concat([classic_18, classic_19], ignore_index=True)
+
+# Concatenate the pop tables vertically
+pop_18_19 = pd.concat([pop_18, pop_19], ignore_index=True)
+
+# Merge classic_18_19 with pop_18_19
+classic_pop = classic_18_19.merge(pop_18_19,on='tid',how='inner')
+
+# Using .isin(), filter classic_18_19 rows where tid is in classic_pop
+popular_classic = classic_18_19[classic_18_19['tid'].isin(classic_pop['tid'])]
+
+# Print popular chart
+print(popular_classic)
+```

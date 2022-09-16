@@ -519,4 +519,34 @@ m = ((iron_1_and_2['name_1'].isnull()) |
 print(iron_1_and_2[m].head())
 ```
 
+Inner joins
+```
+original_sequels = sequels.merge(sequels, left_on='sequel', right_on='id', suffixes=('_org','_seq'))
+print(original_sequels.head())
+```
+
+```
+# Create a Boolean index, named boolean_filter, that selects rows from the left table with the job of 'Director' and avoids rows with the job of 'Director' in the right table
+crews_self_merged = crews.merge(crews, on='id', how='inner',
+                                suffixes=('_dir','_crew'))
+boolean_filter = ((crews_self_merged['job_dir'] == 'Director') & 
+                  (crews_self_merged['job_crew'] != 'Director'))
+direct_crews = crews_self_merged[boolean_filter]
+```
+
+```
+# Merging on indexes
+orig_seq = sequels_fin.merge(sequels_fin, how='inner', left_on='sequel', 
+                             right_on='id', right_index=True,
+                             suffixes=('_org','_seq'))
+orig_seq['diff'] = orig_seq['revenue_seq'] - orig_seq['revenue_org']
+titles_diff = orig_seq[['title_org','title_seq','diff']]
+```
+
+Filtering joins (isin)
+```
+
+```
+
+
 

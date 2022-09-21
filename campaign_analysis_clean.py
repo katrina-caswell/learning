@@ -6,21 +6,13 @@ for dirname, _, filenames in os.walk('/kaggle/input'):
         print(os.path.join(dirname, filename))
 
 import pandas as pd
-import numpy as np
-from sqlalchemy import create_engine
-from scipy import stats
-import matplotlib.pyplot as plt
-%matplotlib inline
-import seaborn as sns
 
 xls = pd.ExcelFile('/kaggle/input/campaign-data/Campaign Data.xlsx')
 
 df = pd.read_excel('/kaggle/input/campaign-data/Campaign Data.xlsx')
 
-engine = create_engine('sqlite://', echo=False)
-df.to_sql("customers", con=engine)
-
 df.head() # What does my data look like?
+
 
 # Getting a basic overview of the data
 
@@ -63,6 +55,7 @@ df.replace("60+",
 
 print('Values in Ageband:',df.ageband.unique())
       
+      
 # Conversion rates
       
 live_total_ids = df[df["campaign_group"] == "Live"]['id']
@@ -80,6 +73,7 @@ ctrl_booked = df[(df["test_flag"] == 1) & (df["campaign_group"] == "Control")]['
 c_conv_rate = (ctrl_booked.nunique())/(ctrl_total_ids.nunique())
       
 print(round(c_conv_rate*100, 2), "%") # Conversion rate for Control group is 1.71%   
+      
       
 # Average spends
       
